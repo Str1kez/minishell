@@ -6,12 +6,11 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:43:36 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/10 19:35:10 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/10 20:57:19 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdio.h>
 
 void	parser(char *str)
 {
@@ -34,14 +33,16 @@ void	parser(char *str)
 	cleaning(&str);
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
 	int		fd;
 
+	(void) argc;
+	(void) argv;
 	fd = open("test.txt", O_RDONLY);
 	while (get_next_line(fd, &str))
 		parser(str);
-	// while (1);
+	while (1);
 	return (0);
 }
