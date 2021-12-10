@@ -1,0 +1,7 @@
+omg 'that is\t triple' wooow
+omg 'that is\t\t triple' wooow
+omg 'that is\\t triple' wooow
+no, 'that is not $USER ' chick
+ok, 'that is "double quotes in single" haha', fjkdjfkdf
+nokjfjsaj \$fkflkjjjjslfk \'ksdfjksf" fks\tfjkfdj " jksdjff\' \"
+nokjfjsaj \$fkflkjjjjslfk \'ksdfjksf" f\$ks\tfjkfdj " jksdjff\' \"

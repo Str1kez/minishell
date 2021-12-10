@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: strikez <strikez@student.42.fr>            +#+  +:+       +#+         #
+#    By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/26 21:02:12 by tnessrou          #+#    #+#              #
-#    Updated: 2021/12/05 19:32:07 by strikez          ###   ########.fr        #
+#    Updated: 2021/12/10 18:08:02 by tnessrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ LIST_FILES	= 	ft_atoi.c \
 				ft_strtrim.c \
 				ft_substr.c \
 				ft_tolower.c \
-				ft_toupper.c
+				ft_toupper.c \
+				get_next_line.c
 
 BONUS_FILES	=	ft_lstnew_bonus.c \
 				ft_lstadd_front_bonus.c \
