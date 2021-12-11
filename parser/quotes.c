@@ -6,13 +6,13 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:02:17 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/10 19:37:34 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:51:10 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char	*control(char *str, int *i)
+static char	*control(char *str, int *i, t_env *env_list)
 {
 	while (str[*i] && str[*i] != '"')
 	{
@@ -20,7 +20,7 @@ static char	*control(char *str, int *i)
 				|| str[*i + 1] == '$' || str[*i + 1] == '\\'))
 			str = slash(str, i);
 		else if (str[*i] == '$')
-			str = dollar(str, i);
+			str = dollar(str, i, env_list);
 		else
 			(*i)++;
 	}
@@ -53,7 +53,7 @@ char	*quotes(char *str, int *i)
 	return (now);
 }
 
-char	*double_quotes(char *str, int *i)
+char	*double_quotes(char *str, int *i, t_env *env_list)
 {
 	int		help;
 	char	*before;
@@ -62,7 +62,7 @@ char	*double_quotes(char *str, int *i)
 
 	help = *i;
 	(*i)++;
-	str = control(str, i);
+	str = control(str, i, env_list);
 	before = ft_substr(str, 0, help);
 	now = ft_substr(str, help + 1, *i - help - 1);
 	after = ft_strdup(str + *i + 1);

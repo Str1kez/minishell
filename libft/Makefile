@@ -6,7 +6,7 @@
 #    By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/26 21:02:12 by tnessrou          #+#    #+#              #
-#    Updated: 2021/12/10 18:08:02 by tnessrou         ###   ########.fr        #
+#    Updated: 2021/12/11 17:43:36 by tnessrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ LIST_FILES	= 	ft_atoi.c \
 				ft_memset.c \
 				ft_split.c \
 				ft_strchr.c \
+				ft_strcmp.c \
 				ft_strlcat.c \
 				ft_strlcpy.c \
 				ft_strlen.c \

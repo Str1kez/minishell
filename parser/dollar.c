@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:50:11 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/10 17:53:02 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:48:19 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,26 @@ static int	is_key(char c)
 	return (c == '_' || ft_isalnum(c));
 }
 
-char	*dollar(char *str, int *i)
+static char	*find_env(char *exp, t_env *env_list)
+{
+	while (env_list)
+	{
+		if (!ft_strcmp(exp, env_list->key))
+		{
+			cleaning(&exp);
+			return (env_list->value);
+		}
+		env_list = env_list->next;
+	}
+	cleaning(&exp);
+	return (ft_strdup(""));
+}
+
+char	*dollar(char *str, int *i, t_env *env_list)
 {
 	int		help;
 	char	*before;
-	char	*env_key;
+	char	*env_exp;
 	char	*after;
 
 	help = *i;
@@ -31,15 +46,16 @@ char	*dollar(char *str, int *i)
 	if (*i == help + 1)
 		return (str);
 	before = ft_substr(str, 0, help);
-	env_key = ft_substr(str, help + 1, *i - help - 1);
+	env_exp = ft_substr(str, help + 1, *i - help - 1);
 	after = ft_strdup(str + *i + 1);
+	env_exp = find_env(env_exp, env_list);
 	cleaning(&str);
-	str = ft_strjoin(before, env_key);
+	str = ft_strjoin(before, env_exp);
 	cleaning(&before);
-	cleaning(&env_key);
-	env_key = ft_strjoin(str, after);
+	cleaning(&env_exp);
+	env_exp = ft_strjoin(str, after);
 	cleaning(&str);
 	cleaning(&after);
 	(*i)--;
-	return (env_key);
+	return (env_exp);
 }

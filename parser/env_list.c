@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:29:48 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/10 21:05:13 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:32:36 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,28 @@ void	clean_env(t_env **env)
 		del_env(help);
 	}
 	del_env(*env);
+}
+
+t_env	*init_env(char **envp)
+{
+	int		i;
+	t_env	**node;
+	t_env	*start;
+
+	i = 0;
+	if (envp[i])
+	{
+		start = new_env(envp[i]);
+		node = &start->next;
+	}
+	else
+		return (NULL);
+	i++;
+	while (envp[i])
+	{
+		*node = new_env(envp[i]);
+		node = &((*node)->next);
+		i++;
+	}
+	return (start);
 }
