@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:29:48 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/11 17:32:36 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:20:00 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,24 @@ void	clean_env(t_env **env)
 
 	if (!*env)
 		return ;
-	while ((*env)->next)
+	while (*env)
 	{
 		help = *env;
-		env = &((*env)->next);
+		*env = help->next;
 		del_env(help);
 	}
-	del_env(*env);
 }
 
 t_env	*init_env(char **envp)
 {
 	int		i;
-	t_env	**node;
 	t_env	*start;
 
 	i = 0;
-	if (envp[i])
-	{
-		start = new_env(envp[i]);
-		node = &start->next;
-	}
-	else
-		return (NULL);
-	i++;
+	start = NULL;
 	while (envp[i])
 	{
-		*node = new_env(envp[i]);
-		node = &((*node)->next);
+		push_env(&start, new_env(envp[i]));
 		i++;
 	}
 	return (start);

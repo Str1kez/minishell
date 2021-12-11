@@ -3,3 +3,6 @@ all:
 
 libft:
 	make -sC ../libft && make -sC ../libft clean
+
+debug:
+		gcc -Wall -Wextra -Werror -g *.c -L../libft -lft -I.. -o parser
