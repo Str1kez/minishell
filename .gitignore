@@ -2,3 +2,5 @@
 .idea/
 a.out
 libft.a
+cmake-build-debug/
+CMakeLists.txt

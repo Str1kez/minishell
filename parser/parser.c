@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:43:36 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/11 19:58:58 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/13 21:51:52 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,30 @@ void	parser(char *str, t_env *env_list)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	int		fd;
 	t_env	*env_list;
-	t_env	*lol;
+	// t_env	*lol;
+	// int		fd;
 
 	(void) argc;
 	(void) argv;
 	env_list = init_env(envp);
-	// printf("%p\n", env_list);
-	fd = open("test.txt", O_RDONLY);
-	while (get_next_line(fd, &str))
-		parser(str, env_list);
-	lol = env_list;
-	while (lol)
-	{
-		printf("%s=%s    %p\n", lol->key, lol->value, lol);
-		lol = lol->next;
-	}
-	// printf("%p\n", env_list);
+	// str = ft_strdup("ok, 'that is \"double quotes in single\" haha', fjkdjfkdf");
+	// str = ft_strdup("ksjfkls $ jdskajfjdfk");
+	str = ft_strdup("yeah, that $USER is - me");
+	// ! Не проверять парсер с гнлом, так как в процессе парсера удаляется значение
+	// fd = open("../parser/test.txt", O_RDONLY);
+	// while (get_next_line(fd, &str))
+		// parser(str, env_list);
+	if (preparser(str))
+		print_error("Error in sequence of quotes");
+	parser(str, env_list);
+	// lol = env_list;
+	// while (lol)
+	// {
+	// 	printf("%s=%s\n", lol->key, lol->value);
+	// 	lol = lol->next;
+	// }
 	clean_env(&env_list);
-	// ! Ошибка в очистке списка env
 	// while (1);
 	return (0);
 }

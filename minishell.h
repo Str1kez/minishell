@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:34:57 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/11 17:51:23 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/13 21:02:17 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ t_env	*new_env(char *str);
 void	del_env(t_env *node);
 void	clean_env(t_env **env);
 t_env	*init_env(char **envp);
+int		preparser(char *str);
+void	print_error(const char *str);
 
 #endif

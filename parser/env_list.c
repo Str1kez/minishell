@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:29:48 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/11 20:20:00 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/13 18:59:38 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_env	*new_env(char *str)
 
 void	push_env(t_env **env, t_env *new)
 {
+	if (!new)
+		return ;
 	if (!*env)
 	{
 		*env = new;
@@ -64,12 +66,16 @@ t_env	*init_env(char **envp)
 {
 	int		i;
 	t_env	*start;
+	t_env	*new;
 
 	i = 0;
 	start = NULL;
 	while (envp[i])
-	{
-		push_env(&start, new_env(envp[i]));
+	{	
+		new = new_env(envp[i]);
+		if (!new)
+			return (NULL);
+		push_env(&start, new);
 		i++;
 	}
 	return (start);

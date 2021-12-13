@@ -6,7 +6,7 @@
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:02:17 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/11 17:51:10 by tnessrou         ###   ########.fr       */
+/*   Updated: 2021/12/13 21:05:00 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*quotes(char *str, int *i)
 		(*i)++;
 	before = ft_substr(str, 0, help);
 	now = ft_substr(str, help + 1, *i - help - 1);
-	// now = slash_in_quotes(now);
 	after = ft_strdup(str + *i + 1);
 	cleaning(&str);
 	str = ft_strjoin(before, now);
