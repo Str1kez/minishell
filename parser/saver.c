@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   saver.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnessrou <tnessrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 17:53:50 by tnessrou          #+#    #+#             */
-/*   Updated: 2021/12/16 21:16:22 by tnessrou         ###   ########.fr       */
+/*   Created: 2021/12/16 21:03:32 by tnessrou          #+#    #+#             */
+/*   Updated: 2021/12/16 21:04:14 by tnessrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// ? Надо ли вообще заводить ее?
-void	cleaning(char **data)
+t_saver	*init_saver(void)
 {
-	free(*data);
-	*data = NULL;
+	t_saver	*res;
+
+	res = (t_saver *)malloc(sizeof(t_saver));
+	res->line = NULL;
+	res->available = 0;
+	return (res);
 }
 
-void	print_error(const char *str)
+void	saver_fill(char *str, int i, t_saver *save)
 {
-	printf("%s\n", str);
-	exit(1);
+	save->line = ft_substr(str, 0, i + 1);
+	save->available = 1;
 }
 
-int	is_space(char c)
+void	clean_saver(t_saver **save)
 {
-	return ((c >= 9 && c <= 13) || c == ' ');
-}
-
-int	is_service(char c)
-{
-	return (c == '|' || c == '<' || c == '>');
+	free((*save)->line);
+	free(*save);
+	*save = NULL;
 }
